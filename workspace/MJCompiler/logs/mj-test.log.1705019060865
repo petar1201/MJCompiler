@@ -1,0 +1,5 @@
+INFO  01:23:54,180 - Compiling source file: /Users/petar/eclipse-workspace/workspace/MJCompiler/test/program.mj
+INFO  01:23:54,194 - #21 program
+ERROR 01:23:54,194 - 
+Sintaksna greska na liniji 1
+ERROR 01:23:54,194 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 1
