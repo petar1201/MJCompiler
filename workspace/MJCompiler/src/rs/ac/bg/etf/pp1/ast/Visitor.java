@@ -1,22 +1,19 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/0/2024 23:40:4
+// 4/1/2024 0:22:44
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public interface Visitor { 
 
-    public void visit(Unmatched Unmatched);
     public void visit(MultipleDesignators MultipleDesignators);
     public void visit(ClassOrVarOrConstDeclaration ClassOrVarOrConstDeclaration);
     public void visit(Mulop Mulop);
     public void visit(MethodDecl MethodDecl);
-    public void visit(Matched Matched);
     public void visit(Relop Relop);
     public void visit(MultipleMethodDeclaration MultipleMethodDeclaration);
     public void visit(Addop Addop);
-    public void visit(DesignatorIdentExprList DesignatorIdentExprList);
     public void visit(MultipleConstVariablesInOneLineDeclarations MultipleConstVariablesInOneLineDeclarations);
     public void visit(MultipleDesignatorStatements MultipleDesignatorStatements);
     public void visit(MultipleStaticInitializers MultipleStaticInitializers);
@@ -54,11 +51,13 @@ public interface Visitor {
     public void visit(ListAndConstDecl ListAndConstDecl);
     public void visit(EmptyNamespace EmptyNamespace);
     public void visit(NamespacesOneAndMultiple NamespacesOneAndMultiple);
+    public void visit(CommaIdent CommaIdent);
     public void visit(EmptyMultipleConstVariablesInOneLineDeclarations EmptyMultipleConstVariablesInOneLineDeclarations);
     public void visit(MultipleConstVariablesInOneLineDeclarationsList MultipleConstVariablesInOneLineDeclarationsList);
     public void visit(NumOrCharOrBoolConstNumConst NumOrCharOrBoolConstNumConst);
     public void visit(NumOrCharOrBoolConstBoolConst NumOrCharOrBoolConstBoolConst);
     public void visit(NumOrCharOrBoolConstCharConst NumOrCharOrBoolConstCharConst);
+    public void visit(CommaIdentLbracketRbracket CommaIdentLbracketRbracket);
     public void visit(EmptyMultipleVariablesInOneLineDeclarations EmptyMultipleVariablesInOneLineDeclarations);
     public void visit(MultipleVariablesInOneLineDeclarationsNoBrackets MultipleVariablesInOneLineDeclarationsNoBrackets);
     public void visit(MultipleVariablesInOneLineDeclarationsBrackets MultipleVariablesInOneLineDeclarationsBrackets);
@@ -78,29 +77,12 @@ public interface Visitor {
     public void visit(MultipleTypeIdentOptionalBracketsList MultipleTypeIdentOptionalBracketsList);
     public void visit(TypeIdentOptionalBracketsBrackets TypeIdentOptionalBracketsBrackets);
     public void visit(TypeIdentOptionalBracketsNoBrackets TypeIdentOptionalBracketsNoBrackets);
-    public void visit(EmptyDesignatorIdentExprList EmptyDesignatorIdentExprList);
-    public void visit(DesignatorIdentExprListExpr DesignatorIdentExprListExpr);
-    public void visit(DesignatorIdentExprListIdent DesignatorIdentExprListIdent);
     public void visit(EmptyMultipleDesignators EmptyMultipleDesignators);
     public void visit(MultipleDesignatorsAddingComma MultipleDesignatorsAddingComma);
     public void visit(MultipleDesignatorsAddingDesignatorAndComma MultipleDesignatorsAddingDesignatorAndComma);
     public void visit(EmptyMultipleDesignatorStatements EmptyMultipleDesignatorStatements);
     public void visit(BasicMultipleDesignatorStatements BasicMultipleDesignatorStatements);
     public void visit(MultipleDesignatorStatementsList MultipleDesignatorStatementsList);
-    public void visit(MatchedMultipletStatements MatchedMultipletStatements);
-    public void visit(MatchedForLoopCondFact MatchedForLoopCondFact);
-    public void visit(MatchedForLoop MatchedForLoop);
-    public void visit(MatchedPrintParensExprNumConstSemi MatchedPrintParensExprNumConstSemi);
-    public void visit(MatchedPrintParensExprSemi MatchedPrintParensExprSemi);
-    public void visit(MatchedReadParensDesignatorSemi MatchedReadParensDesignatorSemi);
-    public void visit(MatchedReturnExprSemi MatchedReturnExprSemi);
-    public void visit(MatchedReturnSemi MatchedReturnSemi);
-    public void visit(MatchedContinueSemi MatchedContinueSemi);
-    public void visit(MatchedBreakSemi MatchedBreakSemi);
-    public void visit(MatchedIfElse MatchedIfElse);
-    public void visit(MatchedDesignatorStatementSemi MatchedDesignatorStatementSemi);
-    public void visit(IfElseUnmatched IfElseUnmatched);
-    public void visit(IfUnmatched IfUnmatched);
     public void visit(Mod Mod);
     public void visit(Divide Divide);
     public void visit(Times Times);
@@ -114,21 +96,20 @@ public interface Visitor {
     public void visit(Eq Eq);
     public void visit(Assignop Assignop);
     public void visit(Label Label);
+    public void visit(ArrDesignator ArrDesignator);
     public void visit(ExtendedDesignator ExtendedDesignator);
     public void visit(BasicDesignator BasicDesignator);
     public void visit(FactorParensExpr FactorParensExpr);
-    public void visit(FactorNewTypeParensActPars FactorNewTypeParensActPars);
-    public void visit(FactorNewTypeParens FactorNewTypeParens);
     public void visit(FactorNewTypeBracketsExpr FactorNewTypeBracketsExpr);
-    public void visit(FactorConst FactorConst);
-    public void visit(FactorDesifnatorParensActPars FactorDesifnatorParensActPars);
-    public void visit(FactorDesignatorParens FactorDesignatorParens);
+    public void visit(FactorBool FactorBool);
+    public void visit(FactorChar FactorChar);
+    public void visit(FactorNum FactorNum);
     public void visit(FactorDesignator FactorDesignator);
     public void visit(BasicTermFactor BasicTermFactor);
     public void visit(TermFactorList TermFactorList);
-    public void visit(BasicTerm BasicTerm);
+    public void visit(BasicExpr BasicExpr);
     public void visit(MultipleExprTerm MultipleExprTerm);
-    public void visit(BasicTermWithMinus BasicTermWithMinus);
+    public void visit(BasicExprWithMinus BasicExprWithMinus);
     public void visit(ExpandedCondFact ExpandedCondFact);
     public void visit(BasicCondFact BasicCondFact);
     public void visit(BasicCondTerm BasicCondTerm);
@@ -137,26 +118,28 @@ public interface Visitor {
     public void visit(ExpandedCondition ExpandedCondition);
     public void visit(BasicActPat BasicActPat);
     public void visit(MultipleActPats MultipleActPats);
-    public void visit(DesignatorStatementWithPointer DesignatorStatementWithPointer);
     public void visit(DesignatorStatementDecrement DesignatorStatementDecrement);
     public void visit(DesignatorStatementIncrement DesignatorStatementIncrement);
-    public void visit(DesignatorStatementParensActPars DesignatorStatementParensActPars);
-    public void visit(DesignatorStatementParens DesignatorStatementParens);
     public void visit(DesignatorStatementAssignopExpr DesignatorStatementAssignopExpr);
-    public void visit(StatementUnmatched StatementUnmatched);
-    public void visit(StatementMatched StatementMatched);
+    public void visit(StatementPrintParensExprNumConstSemi StatementPrintParensExprNumConstSemi);
+    public void visit(StatementPrintParensExprSemi StatementPrintParensExprSemi);
+    public void visit(StatementReadParensDesignatorSemi StatementReadParensDesignatorSemi);
+    public void visit(StatementDesignatorStatementSemi StatementDesignatorStatementSemi);
     public void visit(BasicType BasicType);
     public void visit(ExpandedType ExpandedType);
     public void visit(FormParameters FormParameters);
-    public void visit(VoidMethodDeclarationFormPars VoidMethodDeclarationFormPars);
+    public void visit(VoidIdent VoidIdent);
     public void visit(VoidMethodDeclaration VoidMethodDeclaration);
-    public void visit(TypeMethodDeclarationFormPars TypeMethodDeclarationFormPars);
-    public void visit(TypeMethodDeclaration TypeMethodDeclaration);
     public void visit(StaticInit StaticInit);
     public void visit(ClassDeclaration ClassDeclaration);
+    public void visit(VarrArrTypeIdent VarrArrTypeIdent);
+    public void visit(VarTypeIdent VarTypeIdent);
     public void visit(VarDeclarationWithoutBrackets VarDeclarationWithoutBrackets);
     public void visit(VarDeclarationWithBrackets VarDeclarationWithBrackets);
+    public void visit(TypeConst TypeConst);
+    public void visit(TypeConstIdent TypeConstIdent);
     public void visit(ConstDeclaration ConstDeclaration);
+    public void visit(NamespaceIdent NamespaceIdent);
     public void visit(Namespace Namespace);
     public void visit(ProgramName ProgramName);
     public void visit(Program Program);

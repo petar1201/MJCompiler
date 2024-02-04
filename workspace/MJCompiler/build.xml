@@ -15,6 +15,8 @@
 				<exclude name="MyDumpSymbolTableVisitor.java"/>
 				<exclude name="Compiler.java"/>
 				<exclude name="semantic/CustomSemanticPass.java"/>
+				<exclude name="semantic/CustomSymbolTable.java"/>
+				<exclude name="semantic/CustomDumpSymbolTableVisitor.java"/>
 			</fileset>
 		</delete>
 		<delete>
@@ -58,8 +60,8 @@
 				<pathelement path="lib/JFlex.jar"/>
 				<pathelement path="lib/cup_v10k.jar"/>
 				<pathelement path="lib/log4j-1.2.17.jar"/>
-				<pathelement path="lib/symboltable.jar"/>
-				<pathelement path="lib/mj-runtime.jar"/>
+				<pathelement path="lib/symboltable-1-1.jar"/>
+				<pathelement path="lib/mj-runtime-1.1.jar"/>
 			</classpath>
 		</javac>
 	</target>

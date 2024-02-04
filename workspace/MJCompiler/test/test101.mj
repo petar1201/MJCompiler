@@ -1,0 +1,35 @@
+// Test301
+
+program test301
+
+namespace Konstante {
+	const int jedan = 1;
+	const int dva = 2;
+	const int tri = 3;
+	const int cetiri = 4, pet = 5, sest = 6, sedam = 7;
+	int osam;
+	int devet, deset;
+	int niz1[];
+	int niz2[], niz3[];
+ 	{}
+}
+	const bool t = true;
+	const char c = 'c';
+	const int dva = 2;
+	int osam;
+	char x;
+	bool b;
+	int niz1[];
+	char charevi[];
+	char charevi1[], charevi2[];
+	bool boolovi[];
+	bool boolovi1[], boolovi2[];
+{
+	void main()
+		int jedan;
+		int osam;
+	{
+		osam = 5;
+		boolovi[5] = true;
+	}
+}

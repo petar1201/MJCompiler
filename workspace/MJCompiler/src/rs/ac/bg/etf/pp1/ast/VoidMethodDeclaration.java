@@ -1,30 +1,31 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/0/2024 23:40:4
+// 4/1/2024 0:22:44
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class VoidMethodDeclaration extends MethodDecl {
 
-    private String I1;
+    private VoidIdent VoidIdent;
     private MultipleVarDeclarations MultipleVarDeclarations;
     private MultipleStatements MultipleStatements;
 
-    public VoidMethodDeclaration (String I1, MultipleVarDeclarations MultipleVarDeclarations, MultipleStatements MultipleStatements) {
-        this.I1=I1;
+    public VoidMethodDeclaration (VoidIdent VoidIdent, MultipleVarDeclarations MultipleVarDeclarations, MultipleStatements MultipleStatements) {
+        this.VoidIdent=VoidIdent;
+        if(VoidIdent!=null) VoidIdent.setParent(this);
         this.MultipleVarDeclarations=MultipleVarDeclarations;
         if(MultipleVarDeclarations!=null) MultipleVarDeclarations.setParent(this);
         this.MultipleStatements=MultipleStatements;
         if(MultipleStatements!=null) MultipleStatements.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public VoidIdent getVoidIdent() {
+        return VoidIdent;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setVoidIdent(VoidIdent VoidIdent) {
+        this.VoidIdent=VoidIdent;
     }
 
     public MultipleVarDeclarations getMultipleVarDeclarations() {
@@ -48,17 +49,20 @@ public class VoidMethodDeclaration extends MethodDecl {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(VoidIdent!=null) VoidIdent.accept(visitor);
         if(MultipleVarDeclarations!=null) MultipleVarDeclarations.accept(visitor);
         if(MultipleStatements!=null) MultipleStatements.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(VoidIdent!=null) VoidIdent.traverseTopDown(visitor);
         if(MultipleVarDeclarations!=null) MultipleVarDeclarations.traverseTopDown(visitor);
         if(MultipleStatements!=null) MultipleStatements.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(VoidIdent!=null) VoidIdent.traverseBottomUp(visitor);
         if(MultipleVarDeclarations!=null) MultipleVarDeclarations.traverseBottomUp(visitor);
         if(MultipleStatements!=null) MultipleStatements.traverseBottomUp(visitor);
         accept(visitor);
@@ -69,7 +73,10 @@ public class VoidMethodDeclaration extends MethodDecl {
         buffer.append(tab);
         buffer.append("VoidMethodDeclaration(\n");
 
-        buffer.append(" "+tab+I1);
+        if(VoidIdent!=null)
+            buffer.append(VoidIdent.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(MultipleVarDeclarations!=null)

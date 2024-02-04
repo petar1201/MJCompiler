@@ -1,24 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/0/2024 23:40:4
+// 4/1/2024 0:22:44
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class NumOrCharOrBoolConstBoolConst extends NumOrCharOrBoolConst {
 
-    private Boolean B1;
+    private Boolean boolValue;
 
-    public NumOrCharOrBoolConstBoolConst (Boolean B1) {
-        this.B1=B1;
+    public NumOrCharOrBoolConstBoolConst (Boolean boolValue) {
+        this.boolValue=boolValue;
     }
 
-    public Boolean getB1() {
-        return B1;
+    public Boolean getBoolValue() {
+        return boolValue;
     }
 
-    public void setB1(Boolean B1) {
-        this.B1=B1;
+    public void setBoolValue(Boolean boolValue) {
+        this.boolValue=boolValue;
     }
 
     public void accept(Visitor visitor) {
@@ -41,7 +41,7 @@ public class NumOrCharOrBoolConstBoolConst extends NumOrCharOrBoolConst {
         buffer.append(tab);
         buffer.append("NumOrCharOrBoolConstBoolConst(\n");
 
-        buffer.append(" "+tab+B1);
+        buffer.append(" "+tab+boolValue);
         buffer.append("\n");
 
         buffer.append(tab);

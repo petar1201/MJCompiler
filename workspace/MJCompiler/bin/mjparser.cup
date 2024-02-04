@@ -56,60 +56,72 @@ scan with {:
 
 terminal PROG, LBRACE, RBRACE, SEMI, LPAREN, RPAREN, COMMA, PRINT, RETURN, PLUS, EQUAL, VOID;
 terminal DIVIDE, DEC, OR, CONST, CONTINUE, EQ, NEQ, PROGRAM, CLASS, NAMESPACE, RBRACKET, INC;
-terminal READ, GT, BREAK, TIMES, MOD, LBRACKET, NUMCONST, AND, ARROW, MINUS, ASSIGN;
+terminal READ, GT, BREAK, TIMES, MOD, LBRACKET, AND, ARROW, MINUS, ASSIGN;
 terminal LTE, DOT, LT, GTE, NEW, EXTENDS, STATIC, FOR, COLON;
-terminal Integer NUMBER;
+terminal Integer NUMCONST;
 terminal Boolean BOOLCONST;
 terminal char CHARCONST;
 terminal String IDENT;
 terminal IF, ELSE;
 
 nonterminal ClassOrVarOrConstDeclaration, MultipleMethodDeclaration, MultipleNamespace, Namespace;
-nonterminal MethodDecl, ConstDecl, VarDecl, ClassDecl, Type, NumOrCharOrBoolConst;
+nonterminal MethodDecl, ConstDecl, VarDecl, ClassDecl, NumOrCharOrBoolConst;
 nonterminal MultipleConstVariablesInOneLineDeclarations, MultipleVariablesInOneLineDeclarations;
 nonterminal StaticInitializer, ExtendableClass, StaticVarDeclarations, MultipleStaticInitializers;
 nonterminal MultipleVarDeclarations, MultipleMethodDeclarationsForClass, MultipleStatements;
 nonterminal Statement, FormPars, TypeIdentOptionalBrackets, MultipleTypeIdentOptionalBrackets;
-nonterminal Mulop, Addop, Relop, Assignop, Label, Designator, DesignatorIdentExprList, Expr;
-nonterminal Term, Factor, CondFact, CondTerm, Condition, ActPars, DesignatorStatement, MultipleDesignators;
-nonterminal Matched, Unmatched, MultipleDesignatorStatements;
+nonterminal Mulop, Addop, Relop, Assignop, Label;
+nonterminal CondFact, CondTerm, Condition, ActPars, DesignatorStatement, MultipleDesignators;
+nonterminal MultipleDesignatorStatements;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgramName;
+nonterminal NamespaceIdent, TypeConst, CommaIdent, TypeConstIdent, VarTypeIdent, VarrArrTypeIdent, CommaIdentLbracketRbracket, VoidIdent;
+
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgramName, Designator;
+
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Factor, Term, Expr;
 
 Program ::= (Program) PROG ProgramName MultipleNamespace ClassOrVarOrConstDeclaration LBRACE MultipleMethodDeclaration RBRACE;
 
 ProgramName ::= (ProgramName) IDENT:pName;
 
-Namespace ::= (Namespace) NAMESPACE IDENT LBRACE ClassOrVarOrConstDeclaration LBRACE MultipleMethodDeclaration RBRACE RBRACE;
+Namespace ::= (Namespace) NamespaceIdent LBRACE ClassOrVarOrConstDeclaration LBRACE MultipleMethodDeclaration RBRACE RBRACE;
 
-ConstDecl ::= (ConstDeclaration) CONST Type IDENT ASSIGN NumOrCharOrBoolConst MultipleConstVariablesInOneLineDeclarations SEMI;
+NamespaceIdent ::= (NamespaceIdent) NAMESPACE IDENT:namespaceName;
 
-VarDecl ::= (VarDeclarationWithBrackets) Type IDENT LBRACKET RBRACKET MultipleVariablesInOneLineDeclarations SEMI
-			|(VarDeclarationWithoutBrackets) Type IDENT MultipleVariablesInOneLineDeclarations SEMI;
+ConstDecl ::= (ConstDeclaration) TypeConstIdent ASSIGN NumOrCharOrBoolConst MultipleConstVariablesInOneLineDeclarations SEMI;
+
+TypeConstIdent ::= (TypeConstIdent) TypeConst IDENT:constName;
+
+TypeConst ::= (TypeConst) CONST Type:type;
+
+VarDecl ::= (VarDeclarationWithBrackets) VarrArrTypeIdent MultipleVariablesInOneLineDeclarations SEMI
+			|(VarDeclarationWithoutBrackets) VarTypeIdent MultipleVariablesInOneLineDeclarations SEMI;
+
+VarTypeIdent ::= (VarTypeIdent) Type:type IDENT:varName;
+VarrArrTypeIdent ::= (VarrArrTypeIdent) Type:type IDENT:varName LBRACKET RBRACKET;
 
 ClassDecl ::= (ClassDeclaration) CLASS IDENT ExtendableClass LBRACE StaticVarDeclarations MultipleStaticInitializers MultipleVarDeclarations MultipleMethodDeclarationsForClass RBRACE;
 
 StaticInitializer ::= (StaticInit) STATIC LBRACE MultipleStatements RBRACE;
 
-MethodDecl ::= (TypeMethodDeclaration) Type IDENT LPAREN RPAREN MultipleVarDeclarations LBRACE  MultipleStatements RBRACE
-			|  (TypeMethodDeclarationFormPars) Type IDENT LPAREN FormPars RPAREN MultipleVarDeclarations LBRACE  MultipleStatements RBRACE
-			|  (VoidMethodDeclaration) VOID IDENT LPAREN RPAREN MultipleVarDeclarations LBRACE  MultipleStatements RBRACE
-			|  (VoidMethodDeclarationFormPars) VOID IDENT LPAREN FormPars RPAREN MultipleVarDeclarations LBRACE  MultipleStatements RBRACE;
+MethodDecl ::= (VoidMethodDeclaration) VoidIdent LPAREN RPAREN MultipleVarDeclarations LBRACE  MultipleStatements RBRACE;
 			
+VoidIdent ::= (VoidIdent) VOID IDENT:name;
 
 FormPars ::= (FormParameters) TypeIdentOptionalBrackets MultipleTypeIdentOptionalBrackets;
 
-Type ::= (ExpandedType) IDENT COLON COLON IDENT | (BasicType) IDENT;
+Type ::= (ExpandedType) IDENT:namespaceName COLON COLON IDENT:typeName | (BasicType) IDENT:typeName;
 
-Statement ::= (StatementMatched) Matched
-		   | (StatementUnmatched) Unmatched; 
+
+Statement ::= (StatementDesignatorStatementSemi) DesignatorStatement SEMI
+			| (StatementReadParensDesignatorSemi) READ LPAREN Designator RPAREN SEMI
+			| (StatementPrintParensExprSemi) PRINT LPAREN Expr RPAREN SEMI
+			| (StatementPrintParensExprNumConstSemi) PRINT LPAREN Expr COMMA NUMCONST RPAREN SEMI;
+								
 
 DesignatorStatement ::= (DesignatorStatementAssignopExpr) Designator Assignop Expr
-					| (DesignatorStatementParens) Designator LPAREN RPAREN
-					| (DesignatorStatementParensActPars) Designator LPAREN ActPars RPAREN
 					| (DesignatorStatementIncrement) Designator INC 
-					| (DesignatorStatementDecrement) Designator DEC
-					| (DesignatorStatementWithPointer) LBRACKET MultipleDesignators TIMES Designator RBRACKET ASSIGN Designator;
+					| (DesignatorStatementDecrement) Designator DEC;
 					
 
 ActPars ::= (MultipleActPats) ActPars COMMA Expr | (BasicActPat) Expr;
@@ -120,20 +132,20 @@ CondTerm ::= (ExpandedCondTerm) CondTerm AND CondFact | (BasicCondTerm) CondFact
 
 CondFact ::= (BasicCondFact) Expr | (ExpandedCondFact) Expr Relop Expr;
 
-Expr ::=  (BasicTermWithMinus) MINUS Term | (MultipleExprTerm) Expr Addop Term | (BasicTerm) Term ;
+Expr ::=  (BasicExprWithMinus) MINUS Term | (MultipleExprTerm) Expr Addop Term | (BasicExpr) Term ;
 
 Term ::= (TermFactorList) Term Mulop Factor | (BasicTermFactor) Factor;
 
 Factor ::= (FactorDesignator) Designator
-		| (FactorDesignatorParens) Designator LPAREN RPAREN 
-		| (FactorDesifnatorParensActPars) Designator LPAREN ActPars RPAREN 
-		| (FactorConst) NumOrCharOrBoolConst
+		| (FactorNum) NUMCONST
+		| (FactorChar) CHARCONST
+		| (FactorBool) BOOLCONST
 		| (FactorNewTypeBracketsExpr) NEW Type LBRACKET Expr RBRACKET
-		| (FactorNewTypeParens) NEW Type LPAREN RPAREN
-		| (FactorNewTypeParensActPars) NEW Type LPAREN ActPars RPAREN
 		| (FactorParensExpr) LPAREN Expr RPAREN;
 
-Designator ::= (BasicDesignator) IDENT DesignatorIdentExprList | (ExtendedDesignator) IDENT COLON COLON IDENT DesignatorIdentExprList;
+Designator ::= (BasicDesignator) IDENT:designatorName 
+			 | (ExtendedDesignator) IDENT:namespaceName COLON COLON IDENT:designatorName
+			 | (ArrDesignator) Designator LBRACKET Expr RBRACKET;
 
 Label ::= (Label) IDENT;
 
@@ -153,22 +165,7 @@ Mulop ::= (Times) TIMES
 		| (Divide) DIVIDE
 		| (Mod) MOD;
 
-Unmatched ::= (IfUnmatched) IF LPAREN Condition RPAREN Statement
-		 	| (IfElseUnmatched) IF LPAREN Condition RPAREN Matched ELSE Unmatched;
 
-Matched ::= (MatchedDesignatorStatementSemi) DesignatorStatement SEMI
-			| (MatchedIfElse) IF LPAREN Condition RPAREN Matched ELSE Matched
-			| (MatchedBreakSemi) BREAK SEMI
-			| (MatchedContinueSemi) CONTINUE SEMI
-			| (MatchedReturnSemi) RETURN SEMI
-			| (MatchedReturnExprSemi) RETURN Expr SEMI
-			| (MatchedReadParensDesignatorSemi) READ LPAREN Designator RPAREN SEMI
-			| (MatchedPrintParensExprSemi) PRINT LPAREN Expr RPAREN SEMI
-			| (MatchedPrintParensExprNumConstSemi) PRINT LPAREN Expr COMMA NUMCONST RPAREN SEMI
-			| (MatchedForLoop) FOR LPAREN MultipleDesignatorStatements SEMI SEMI MultipleDesignatorStatements RPAREN Matched 
-			| (MatchedForLoopCondFact) FOR LPAREN MultipleDesignatorStatements SEMI CondFact SEMI MultipleDesignatorStatements RPAREN Matched 
-			| (MatchedMultipletStatements) LBRACE MultipleStatements RBRACE;
-								
 MultipleDesignatorStatements ::= (MultipleDesignatorStatementsList) MultipleDesignatorStatements COMMA DesignatorStatement
 						| (BasicMultipleDesignatorStatements) DesignatorStatement
 						| (EmptyMultipleDesignatorStatements);
@@ -177,9 +174,6 @@ MultipleDesignators ::= (MultipleDesignatorsAddingDesignatorAndComma) MultipleDe
 					| (MultipleDesignatorsAddingComma) MultipleDesignators COMMA
 					| (EmptyMultipleDesignators);		
 
-DesignatorIdentExprList ::= (DesignatorIdentExprListIdent) DesignatorIdentExprList DOT IDENT
-						   | (DesignatorIdentExprListExpr) DesignatorIdentExprList LBRACKET Expr RBRACKET
-						   | (EmptyDesignatorIdentExprList);
 
 TypeIdentOptionalBrackets ::= (TypeIdentOptionalBracketsNoBrackets) Type IDENT | (TypeIdentOptionalBracketsBrackets) Type IDENT LBRACKET RBRACKET;
 
@@ -199,16 +193,22 @@ StaticVarDeclarations ::= (StaticVarDeclarationsList) StaticVarDeclarations STAT
 ExtendableClass ::= (ClassExtended) EXTENDS Type | (ClassNotExtened);
 
 
-MultipleVariablesInOneLineDeclarations ::= (MultipleVariablesInOneLineDeclarationsBrackets) MultipleVariablesInOneLineDeclarations COMMA IDENT LBRACKET RBRACKET
-										  |(MultipleVariablesInOneLineDeclarationsNoBrackets) MultipleVariablesInOneLineDeclarations COMMA IDENT 
+MultipleVariablesInOneLineDeclarations ::= (MultipleVariablesInOneLineDeclarationsBrackets) MultipleVariablesInOneLineDeclarations CommaIdentLbracketRbracket
+										  |(MultipleVariablesInOneLineDeclarationsNoBrackets) MultipleVariablesInOneLineDeclarations CommaIdent
 										  | (EmptyMultipleVariablesInOneLineDeclarations);
 
-NumOrCharOrBoolConst ::= (NumOrCharOrBoolConstCharConst) CHARCONST
-						| (NumOrCharOrBoolConstBoolConst) BOOLCONST
-						| (NumOrCharOrBoolConstNumConst) NUMCONST;
+CommaIdentLbracketRbracket ::= (CommaIdentLbracketRbracket) COMMA IDENT:varName LBRACKET RBRACKET;
 
-MultipleConstVariablesInOneLineDeclarations ::= (MultipleConstVariablesInOneLineDeclarationsList) MultipleConstVariablesInOneLineDeclarations COMMA IDENT ASSIGN NumOrCharOrBoolConst 
+
+NumOrCharOrBoolConst ::= (NumOrCharOrBoolConstCharConst) CHARCONST:charValue
+						| (NumOrCharOrBoolConstBoolConst) BOOLCONST:boolValue
+						| (NumOrCharOrBoolConstNumConst) NUMCONST:numValue;
+
+MultipleConstVariablesInOneLineDeclarations ::= (MultipleConstVariablesInOneLineDeclarationsList) CommaIdent ASSIGN NumOrCharOrBoolConst MultipleConstVariablesInOneLineDeclarations
 												|(EmptyMultipleConstVariablesInOneLineDeclarations);
+
+
+CommaIdent ::= (CommaIdent)COMMA IDENT:name;
 
 MultipleNamespace ::= (NamespacesOneAndMultiple) MultipleNamespace Namespace | (EmptyNamespace);
 
@@ -220,15 +220,4 @@ ClassOrVarOrConstDeclaration ::= (ListAndConstDecl) ClassOrVarOrConstDeclaration
 MultipleMethodDeclaration ::= (MethodDeclarationOneAndMultiple) MultipleMethodDeclaration MethodDecl | (EmptyMethodDeclaration);
 
    
-
-
-
-
-
-
-
-
-
-
-
 

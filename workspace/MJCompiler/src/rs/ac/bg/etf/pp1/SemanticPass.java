@@ -3,15 +3,9 @@ import org.apache.log4j.Logger;
 
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.symboltable.concepts.Obj;
-import rs.etf.pp1.symboltable.concepts.Struct;
 
 public class SemanticPass extends VisitorAdaptor {
 
-	@Override
-	public void visit(Unmatched Unmatched) {
-		// TODO Auto-generated method stub
-		super.visit(Unmatched);
-	}
 
 	@Override
 	public void visit(MultipleDesignators MultipleDesignators) {
@@ -38,12 +32,6 @@ public class SemanticPass extends VisitorAdaptor {
 	}
 
 	@Override
-	public void visit(Matched Matched) {
-		// TODO Auto-generated method stub
-		super.visit(Matched);
-	}
-
-	@Override
 	public void visit(Relop Relop) {
 		// TODO Auto-generated method stub
 		super.visit(Relop);
@@ -59,12 +47,6 @@ public class SemanticPass extends VisitorAdaptor {
 	public void visit(Addop Addop) {
 		// TODO Auto-generated method stub
 		super.visit(Addop);
-	}
-
-	@Override
-	public void visit(DesignatorIdentExprList DesignatorIdentExprList) {
-		// TODO Auto-generated method stub
-		super.visit(DesignatorIdentExprList);
 	}
 
 	@Override
@@ -435,23 +417,7 @@ public class SemanticPass extends VisitorAdaptor {
 		super.visit(TypeIdentOptionalBracketsNoBrackets);
 	}
 
-	@Override
-	public void visit(EmptyDesignatorIdentExprList EmptyDesignatorIdentExprList) {
-		// TODO Auto-generated method stub
-		super.visit(EmptyDesignatorIdentExprList);
-	}
 
-	@Override
-	public void visit(DesignatorIdentExprListExpr DesignatorIdentExprListExpr) {
-		// TODO Auto-generated method stub
-		super.visit(DesignatorIdentExprListExpr);
-	}
-
-	@Override
-	public void visit(DesignatorIdentExprListIdent DesignatorIdentExprListIdent) {
-		// TODO Auto-generated method stub
-		super.visit(DesignatorIdentExprListIdent);
-	}
 
 	@Override
 	public void visit(EmptyMultipleDesignators EmptyMultipleDesignators) {
@@ -489,89 +455,8 @@ public class SemanticPass extends VisitorAdaptor {
 		super.visit(MultipleDesignatorStatementsList);
 	}
 
-	@Override
-	public void visit(MatchedMultipletStatements MatchedMultipletStatements) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedMultipletStatements);
-	}
+	
 
-	@Override
-	public void visit(MatchedForLoopCondFact MatchedForLoopCondFact) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedForLoopCondFact);
-	}
-
-	@Override
-	public void visit(MatchedForLoop MatchedForLoop) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedForLoop);
-	}
-
-	@Override
-	public void visit(MatchedPrintParensExprNumConstSemi MatchedPrintParensExprNumConstSemi) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedPrintParensExprNumConstSemi);
-	}
-
-	@Override
-	public void visit(MatchedPrintParensExprSemi MatchedPrintParensExprSemi) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedPrintParensExprSemi);
-	}
-
-	@Override
-	public void visit(MatchedReadParensDesignatorSemi MatchedReadParensDesignatorSemi) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedReadParensDesignatorSemi);
-	}
-
-	@Override
-	public void visit(MatchedReturnExprSemi MatchedReturnExprSemi) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedReturnExprSemi);
-	}
-
-	@Override
-	public void visit(MatchedReturnSemi MatchedReturnSemi) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedReturnSemi);
-	}
-
-	@Override
-	public void visit(MatchedContinueSemi MatchedContinueSemi) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedContinueSemi);
-	}
-
-	@Override
-	public void visit(MatchedBreakSemi MatchedBreakSemi) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedBreakSemi);
-	}
-
-	@Override
-	public void visit(MatchedIfElse MatchedIfElse) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedIfElse);
-	}
-
-	@Override
-	public void visit(MatchedDesignatorStatementSemi MatchedDesignatorStatementSemi) {
-		// TODO Auto-generated method stub
-		super.visit(MatchedDesignatorStatementSemi);
-	}
-
-	@Override
-	public void visit(IfElseUnmatched IfElseUnmatched) {
-		// TODO Auto-generated method stub
-		super.visit(IfElseUnmatched);
-	}
-
-	@Override
-	public void visit(IfUnmatched IfUnmatched) {
-		// TODO Auto-generated method stub
-		super.visit(IfUnmatched);
-	}
 
 	@Override
 	public void visit(Mod Mod) {
@@ -669,17 +554,6 @@ public class SemanticPass extends VisitorAdaptor {
 		super.visit(FactorParensExpr);
 	}
 
-	@Override
-	public void visit(FactorNewTypeParensActPars FactorNewTypeParensActPars) {
-		// TODO Auto-generated method stub
-		super.visit(FactorNewTypeParensActPars);
-	}
-
-	@Override
-	public void visit(FactorNewTypeParens FactorNewTypeParens) {
-		// TODO Auto-generated method stub
-		super.visit(FactorNewTypeParens);
-	}
 
 	@Override
 	public void visit(FactorNewTypeBracketsExpr FactorNewTypeBracketsExpr) {
@@ -687,23 +561,6 @@ public class SemanticPass extends VisitorAdaptor {
 		super.visit(FactorNewTypeBracketsExpr);
 	}
 
-	@Override
-	public void visit(FactorConst FactorConst) {
-		// TODO Auto-generated method stub
-		super.visit(FactorConst);
-	}
-
-	@Override
-	public void visit(FactorDesifnatorParensActPars FactorDesifnatorParensActPars) {
-		// TODO Auto-generated method stub
-		super.visit(FactorDesifnatorParensActPars);
-	}
-
-	@Override
-	public void visit(FactorDesignatorParens FactorDesignatorParens) {
-		// TODO Auto-generated method stub
-		super.visit(FactorDesignatorParens);
-	}
 
 	@Override
 	public void visit(FactorDesignator FactorDesignator) {
@@ -723,11 +580,6 @@ public class SemanticPass extends VisitorAdaptor {
 		super.visit(TermFactorList);
 	}
 
-	@Override
-	public void visit(BasicTerm BasicTerm) {
-		// TODO Auto-generated method stub
-		super.visit(BasicTerm);
-	}
 
 	@Override
 	public void visit(MultipleExprTerm MultipleExprTerm) {
@@ -735,11 +587,6 @@ public class SemanticPass extends VisitorAdaptor {
 		super.visit(MultipleExprTerm);
 	}
 
-	@Override
-	public void visit(BasicTermWithMinus BasicTermWithMinus) {
-		// TODO Auto-generated method stub
-		super.visit(BasicTermWithMinus);
-	}
 
 	@Override
 	public void visit(ExpandedCondFact ExpandedCondFact) {
@@ -790,12 +637,6 @@ public class SemanticPass extends VisitorAdaptor {
 	}
 
 	@Override
-	public void visit(DesignatorStatementWithPointer DesignatorStatementWithPointer) {
-		// TODO Auto-generated method stub
-		super.visit(DesignatorStatementWithPointer);
-	}
-
-	@Override
 	public void visit(DesignatorStatementDecrement DesignatorStatementDecrement) {
 		// TODO Auto-generated method stub
 		super.visit(DesignatorStatementDecrement);
@@ -807,17 +648,6 @@ public class SemanticPass extends VisitorAdaptor {
 		super.visit(DesignatorStatementIncrement);
 	}
 
-	@Override
-	public void visit(DesignatorStatementParensActPars DesignatorStatementParensActPars) {
-		// TODO Auto-generated method stub
-		super.visit(DesignatorStatementParensActPars);
-	}
-
-	@Override
-	public void visit(DesignatorStatementParens DesignatorStatementParens) {
-		// TODO Auto-generated method stub
-		super.visit(DesignatorStatementParens);
-	}
 
 	@Override
 	public void visit(DesignatorStatementAssignopExpr DesignatorStatementAssignopExpr) {
@@ -825,17 +655,6 @@ public class SemanticPass extends VisitorAdaptor {
 		super.visit(DesignatorStatementAssignopExpr);
 	}
 
-	@Override
-	public void visit(StatementUnmatched StatementUnmatched) {
-		// TODO Auto-generated method stub
-		super.visit(StatementUnmatched);
-	}
-
-	@Override
-	public void visit(StatementMatched StatementMatched) {
-		// TODO Auto-generated method stub
-		super.visit(StatementMatched);
-	}
 
 	@Override
 	public void visit(BasicType BasicType) {
@@ -856,28 +675,12 @@ public class SemanticPass extends VisitorAdaptor {
 	}
 
 	@Override
-	public void visit(VoidMethodDeclarationFormPars VoidMethodDeclarationFormPars) {
-		// TODO Auto-generated method stub
-		super.visit(VoidMethodDeclarationFormPars);
-	}
-
-	@Override
 	public void visit(VoidMethodDeclaration VoidMethodDeclaration) {
 		// TODO Auto-generated method stub
 		super.visit(VoidMethodDeclaration);
 	}
 
-	@Override
-	public void visit(TypeMethodDeclarationFormPars TypeMethodDeclarationFormPars) {
-		// TODO Auto-generated method stub
-		super.visit(TypeMethodDeclarationFormPars);
-	}
 
-	@Override
-	public void visit(TypeMethodDeclaration TypeMethodDeclaration) {
-		// TODO Auto-generated method stub
-		super.visit(TypeMethodDeclaration);
-	}
 
 	@Override
 	public void visit(StaticInit StaticInit) {

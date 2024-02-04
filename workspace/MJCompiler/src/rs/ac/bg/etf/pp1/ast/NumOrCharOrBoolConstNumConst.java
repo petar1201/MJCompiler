@@ -1,13 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/0/2024 23:40:4
+// 4/1/2024 0:22:44
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class NumOrCharOrBoolConstNumConst extends NumOrCharOrBoolConst {
 
-    public NumOrCharOrBoolConstNumConst () {
+    private Integer numValue;
+
+    public NumOrCharOrBoolConstNumConst (Integer numValue) {
+        this.numValue=numValue;
+    }
+
+    public Integer getNumValue() {
+        return numValue;
+    }
+
+    public void setNumValue(Integer numValue) {
+        this.numValue=numValue;
     }
 
     public void accept(Visitor visitor) {
@@ -29,6 +40,9 @@ public class NumOrCharOrBoolConstNumConst extends NumOrCharOrBoolConst {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("NumOrCharOrBoolConstNumConst(\n");
+
+        buffer.append(" "+tab+numValue);
+        buffer.append("\n");
 
         buffer.append(tab);
         buffer.append(") [NumOrCharOrBoolConstNumConst]");

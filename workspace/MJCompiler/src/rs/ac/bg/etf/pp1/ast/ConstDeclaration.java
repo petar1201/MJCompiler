@@ -1,41 +1,31 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/0/2024 23:40:4
+// 4/1/2024 0:22:44
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class ConstDeclaration extends ConstDecl {
 
-    private Type Type;
-    private String I2;
+    private TypeConstIdent TypeConstIdent;
     private NumOrCharOrBoolConst NumOrCharOrBoolConst;
     private MultipleConstVariablesInOneLineDeclarations MultipleConstVariablesInOneLineDeclarations;
 
-    public ConstDeclaration (Type Type, String I2, NumOrCharOrBoolConst NumOrCharOrBoolConst, MultipleConstVariablesInOneLineDeclarations MultipleConstVariablesInOneLineDeclarations) {
-        this.Type=Type;
-        if(Type!=null) Type.setParent(this);
-        this.I2=I2;
+    public ConstDeclaration (TypeConstIdent TypeConstIdent, NumOrCharOrBoolConst NumOrCharOrBoolConst, MultipleConstVariablesInOneLineDeclarations MultipleConstVariablesInOneLineDeclarations) {
+        this.TypeConstIdent=TypeConstIdent;
+        if(TypeConstIdent!=null) TypeConstIdent.setParent(this);
         this.NumOrCharOrBoolConst=NumOrCharOrBoolConst;
         if(NumOrCharOrBoolConst!=null) NumOrCharOrBoolConst.setParent(this);
         this.MultipleConstVariablesInOneLineDeclarations=MultipleConstVariablesInOneLineDeclarations;
         if(MultipleConstVariablesInOneLineDeclarations!=null) MultipleConstVariablesInOneLineDeclarations.setParent(this);
     }
 
-    public Type getType() {
-        return Type;
+    public TypeConstIdent getTypeConstIdent() {
+        return TypeConstIdent;
     }
 
-    public void setType(Type Type) {
-        this.Type=Type;
-    }
-
-    public String getI2() {
-        return I2;
-    }
-
-    public void setI2(String I2) {
-        this.I2=I2;
+    public void setTypeConstIdent(TypeConstIdent TypeConstIdent) {
+        this.TypeConstIdent=TypeConstIdent;
     }
 
     public NumOrCharOrBoolConst getNumOrCharOrBoolConst() {
@@ -59,20 +49,20 @@ public class ConstDeclaration extends ConstDecl {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Type!=null) Type.accept(visitor);
+        if(TypeConstIdent!=null) TypeConstIdent.accept(visitor);
         if(NumOrCharOrBoolConst!=null) NumOrCharOrBoolConst.accept(visitor);
         if(MultipleConstVariablesInOneLineDeclarations!=null) MultipleConstVariablesInOneLineDeclarations.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Type!=null) Type.traverseTopDown(visitor);
+        if(TypeConstIdent!=null) TypeConstIdent.traverseTopDown(visitor);
         if(NumOrCharOrBoolConst!=null) NumOrCharOrBoolConst.traverseTopDown(visitor);
         if(MultipleConstVariablesInOneLineDeclarations!=null) MultipleConstVariablesInOneLineDeclarations.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Type!=null) Type.traverseBottomUp(visitor);
+        if(TypeConstIdent!=null) TypeConstIdent.traverseBottomUp(visitor);
         if(NumOrCharOrBoolConst!=null) NumOrCharOrBoolConst.traverseBottomUp(visitor);
         if(MultipleConstVariablesInOneLineDeclarations!=null) MultipleConstVariablesInOneLineDeclarations.traverseBottomUp(visitor);
         accept(visitor);
@@ -83,13 +73,10 @@ public class ConstDeclaration extends ConstDecl {
         buffer.append(tab);
         buffer.append("ConstDeclaration(\n");
 
-        if(Type!=null)
-            buffer.append(Type.toString("  "+tab));
+        if(TypeConstIdent!=null)
+            buffer.append(TypeConstIdent.toString("  "+tab));
         else
             buffer.append(tab+"  null");
-        buffer.append("\n");
-
-        buffer.append(" "+tab+I2);
         buffer.append("\n");
 
         if(NumOrCharOrBoolConst!=null)

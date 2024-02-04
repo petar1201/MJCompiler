@@ -11,6 +11,7 @@ import org.apache.log4j.xml.DOMConfigurator;
 import java_cup.runtime.Symbol;
 import rs.ac.bg.etf.pp1.ast.SyntaxNode;
 import rs.ac.bg.etf.pp1.semantic.CustomSemanticPass;
+import rs.ac.bg.etf.pp1.semantic.CustomSymbolTable;
 import rs.ac.bg.etf.pp1.util.Log4JUtils;
 import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
@@ -42,19 +43,18 @@ public class MJParserTest {
 			MJParser p = new MJParser(lexer);
 	        Symbol s = p.parse();  //pocetak parsiranja
 	        SyntaxNode prog = (SyntaxNode)(s.value);
-	        
-			Tab.init(); // Universe scope
+			CustomSymbolTable.init(); // Universe scope
 			CustomSemanticPass semanticCheck = new CustomSemanticPass();
 			prog.traverseBottomUp(semanticCheck);
 			
 	        log.info("Print calls = " + semanticCheck.printCallCount);
-	        Tab.dump();
+	        CustomSymbolTable.dump();
 	        
 	        if (!p.errorDetected && semanticCheck.passed()) {
-	        	File objFile = new File(args[1]);
-	        	log.info("Generating bytecode file: " + objFile.getAbsolutePath());
-	        	if (objFile.exists())
-	        		objFile.delete();
+//	        	File objFile = new File(args[1]);
+//	        	log.info("Generating bytecode file: " + objFile.getAbsolutePath());
+//	        	if (objFile.exists())
+//	        		objFile.delete();
 	        	
 	        	// Code generation...
 //	        	CodeGenerator codeGenerator = new CodeGenerator();

@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/0/2024 23:40:4
+// 4/1/2024 0:22:44
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,24 +9,25 @@ public class Namespace implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
-    private String I1;
+    private NamespaceIdent NamespaceIdent;
     private ClassOrVarOrConstDeclaration ClassOrVarOrConstDeclaration;
     private MultipleMethodDeclaration MultipleMethodDeclaration;
 
-    public Namespace (String I1, ClassOrVarOrConstDeclaration ClassOrVarOrConstDeclaration, MultipleMethodDeclaration MultipleMethodDeclaration) {
-        this.I1=I1;
+    public Namespace (NamespaceIdent NamespaceIdent, ClassOrVarOrConstDeclaration ClassOrVarOrConstDeclaration, MultipleMethodDeclaration MultipleMethodDeclaration) {
+        this.NamespaceIdent=NamespaceIdent;
+        if(NamespaceIdent!=null) NamespaceIdent.setParent(this);
         this.ClassOrVarOrConstDeclaration=ClassOrVarOrConstDeclaration;
         if(ClassOrVarOrConstDeclaration!=null) ClassOrVarOrConstDeclaration.setParent(this);
         this.MultipleMethodDeclaration=MultipleMethodDeclaration;
         if(MultipleMethodDeclaration!=null) MultipleMethodDeclaration.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public NamespaceIdent getNamespaceIdent() {
+        return NamespaceIdent;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setNamespaceIdent(NamespaceIdent NamespaceIdent) {
+        this.NamespaceIdent=NamespaceIdent;
     }
 
     public ClassOrVarOrConstDeclaration getClassOrVarOrConstDeclaration() {
@@ -66,17 +67,20 @@ public class Namespace implements SyntaxNode {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(NamespaceIdent!=null) NamespaceIdent.accept(visitor);
         if(ClassOrVarOrConstDeclaration!=null) ClassOrVarOrConstDeclaration.accept(visitor);
         if(MultipleMethodDeclaration!=null) MultipleMethodDeclaration.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(NamespaceIdent!=null) NamespaceIdent.traverseTopDown(visitor);
         if(ClassOrVarOrConstDeclaration!=null) ClassOrVarOrConstDeclaration.traverseTopDown(visitor);
         if(MultipleMethodDeclaration!=null) MultipleMethodDeclaration.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(NamespaceIdent!=null) NamespaceIdent.traverseBottomUp(visitor);
         if(ClassOrVarOrConstDeclaration!=null) ClassOrVarOrConstDeclaration.traverseBottomUp(visitor);
         if(MultipleMethodDeclaration!=null) MultipleMethodDeclaration.traverseBottomUp(visitor);
         accept(visitor);
@@ -87,7 +91,10 @@ public class Namespace implements SyntaxNode {
         buffer.append(tab);
         buffer.append("Namespace(\n");
 
-        buffer.append(" "+tab+I1);
+        if(NamespaceIdent!=null)
+            buffer.append(NamespaceIdent.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(ClassOrVarOrConstDeclaration!=null)

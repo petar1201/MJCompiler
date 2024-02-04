@@ -1,38 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/0/2024 23:40:4
+// 4/1/2024 0:22:44
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class VarDeclarationWithoutBrackets extends VarDecl {
 
-    private Type Type;
-    private String I2;
+    private VarTypeIdent VarTypeIdent;
     private MultipleVariablesInOneLineDeclarations MultipleVariablesInOneLineDeclarations;
 
-    public VarDeclarationWithoutBrackets (Type Type, String I2, MultipleVariablesInOneLineDeclarations MultipleVariablesInOneLineDeclarations) {
-        this.Type=Type;
-        if(Type!=null) Type.setParent(this);
-        this.I2=I2;
+    public VarDeclarationWithoutBrackets (VarTypeIdent VarTypeIdent, MultipleVariablesInOneLineDeclarations MultipleVariablesInOneLineDeclarations) {
+        this.VarTypeIdent=VarTypeIdent;
+        if(VarTypeIdent!=null) VarTypeIdent.setParent(this);
         this.MultipleVariablesInOneLineDeclarations=MultipleVariablesInOneLineDeclarations;
         if(MultipleVariablesInOneLineDeclarations!=null) MultipleVariablesInOneLineDeclarations.setParent(this);
     }
 
-    public Type getType() {
-        return Type;
+    public VarTypeIdent getVarTypeIdent() {
+        return VarTypeIdent;
     }
 
-    public void setType(Type Type) {
-        this.Type=Type;
-    }
-
-    public String getI2() {
-        return I2;
-    }
-
-    public void setI2(String I2) {
-        this.I2=I2;
+    public void setVarTypeIdent(VarTypeIdent VarTypeIdent) {
+        this.VarTypeIdent=VarTypeIdent;
     }
 
     public MultipleVariablesInOneLineDeclarations getMultipleVariablesInOneLineDeclarations() {
@@ -48,18 +38,18 @@ public class VarDeclarationWithoutBrackets extends VarDecl {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Type!=null) Type.accept(visitor);
+        if(VarTypeIdent!=null) VarTypeIdent.accept(visitor);
         if(MultipleVariablesInOneLineDeclarations!=null) MultipleVariablesInOneLineDeclarations.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Type!=null) Type.traverseTopDown(visitor);
+        if(VarTypeIdent!=null) VarTypeIdent.traverseTopDown(visitor);
         if(MultipleVariablesInOneLineDeclarations!=null) MultipleVariablesInOneLineDeclarations.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Type!=null) Type.traverseBottomUp(visitor);
+        if(VarTypeIdent!=null) VarTypeIdent.traverseBottomUp(visitor);
         if(MultipleVariablesInOneLineDeclarations!=null) MultipleVariablesInOneLineDeclarations.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -69,13 +59,10 @@ public class VarDeclarationWithoutBrackets extends VarDecl {
         buffer.append(tab);
         buffer.append("VarDeclarationWithoutBrackets(\n");
 
-        if(Type!=null)
-            buffer.append(Type.toString("  "+tab));
+        if(VarTypeIdent!=null)
+            buffer.append(VarTypeIdent.toString("  "+tab));
         else
             buffer.append(tab+"  null");
-        buffer.append("\n");
-
-        buffer.append(" "+tab+I2);
         buffer.append("\n");
 
         if(MultipleVariablesInOneLineDeclarations!=null)
